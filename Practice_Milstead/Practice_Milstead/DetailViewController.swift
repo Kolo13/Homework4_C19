@@ -31,9 +31,10 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
     picker.dismissViewControllerAnimated(true, completion: nil)
     //this gets fired when the image picker is done
     println("user picked an image")
-    var editedImage = info[UIImagePickerControllerOriginalImage] as UIImage
+    var editedImage = info[UIImagePickerControllerEditedImage] as UIImage
+    self.profileImage.contentMode = UIViewContentMode.ScaleAspectFit
     self.profileImage.image = editedImage
-    personProfile.image = editedImage
+    self.personProfile.image = editedImage
     
   }
   
@@ -46,6 +47,7 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
       super.viewDidLoad()
       firstNameTextField.text = personProfile.firstName
       self.lastNameTextField.text = personProfile.lastName
+      self.profileImage.contentMode = UIViewContentMode.ScaleAspectFit
       self.profileImage.image = personProfile.image
       
       if personProfile.image == nil {
