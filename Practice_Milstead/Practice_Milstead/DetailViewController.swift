@@ -8,25 +8,55 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
+class DetailViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
   
   var personProfile: Person!
-
-   @IBOutlet weak var firstNameTextField: UITextField!
-   @IBOutlet weak var lastNameTextField: UITextField!
+  var noPicImage = UIImage(named: "noPicHead")
   
+  @IBOutlet weak var firstNameTextField: UITextField!
+  @IBOutlet weak var lastNameTextField: UITextField!
+  @IBOutlet weak var profileImage: UIImageView!
+  
+  @IBAction func photoButtonPressed(sender: AnyObject) {
+    var pickerController = UIImagePickerController()
+    pickerController.delegate = self
+    pickerController.allowsEditing = true
+    pickerController.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+    
+    self.presentViewController(pickerController, animated: true, completion: nil)
+
+  }
+  
+  func imagePickerController(picker: UIImagePickerController!, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]!) {
+    picker.dismissViewControllerAnimated(true, completion: nil)
+    //this gets fired when the image picker is done
+    println("user picked an image")
+    var editedImage = info[UIImagePickerControllerOriginalImage] as UIImage
+    self.profileImage.image = editedImage
+    personProfile.image = editedImage
+    
+  }
+  
+  func imagePickerControllerDidCancel(picker: UIImagePickerController!) {
+    //this gets fired when the users cancel out of the process
+    picker.dismissViewControllerAnimated(true, completion: nil)
+  }
+
     override func viewDidLoad() {
       super.viewDidLoad()
-      
       firstNameTextField.text = personProfile.firstName
-      lastNameTextField.text = personProfile.lastName
+      self.lastNameTextField.text = personProfile.lastName
+      self.profileImage.image = personProfile.image
       
-        // Do any additional setup after loading the view.
+      if personProfile.image == nil {
+        profileImage.contentMode = UIViewContentMode.ScaleAspectFit
+        profileImage.image = noPicImage
+      }
+      
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
   
   override func viewWillDisappear(animated: Bool) {

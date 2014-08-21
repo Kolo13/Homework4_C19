@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6205" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="iwn-hT-T4Z">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6206.8" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="iwn-hT-T4Z">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6198"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7026.1"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -79,6 +79,9 @@
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="44" y="215" width="97" height="30"/>
                                 </variation>
+                                <connections>
+                                    <outlet property="delegate" destination="fU1-kx-bIj" id="eMD-0m-vWd"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="l6n-3c-5Fp">
                                 <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
@@ -87,30 +90,56 @@
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="44" y="283" width="97" height="30"/>
                                 </variation>
+                                <connections>
+                                    <outlet property="delegate" destination="fU1-kx-bIj" id="BPd-nk-c69"/>
+                                </connections>
                             </textField>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PjY-DV-9B0">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="44" y="72" width="240" height="128"/>
+                                </variation>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bsI-cW-Hpg">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="177" y="385" width="46" height="30"/>
+                                </variation>
+                                <connections>
+                                    <action selector="photoButtonPressed:" destination="fU1-kx-bIj" eventType="touchDown" id="OLy-HR-S0p"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="8n5-nG-Oej"/>
                                 <exclude reference="l6n-3c-5Fp"/>
+                                <exclude reference="PjY-DV-9B0"/>
+                                <exclude reference="bsI-cW-Hpg"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
                             <mask key="subviews">
                                 <include reference="8n5-nG-Oej"/>
                                 <include reference="l6n-3c-5Fp"/>
+                                <include reference="PjY-DV-9B0"/>
+                                <include reference="bsI-cW-Hpg"/>
                             </mask>
                         </variation>
                     </view>
                     <connections>
                         <outlet property="firstNameTextField" destination="8n5-nG-Oej" id="qzD-ji-4Hn"/>
-                        <outlet property="lastNameTextField" destination="l6n-3c-5Fp" id="dL7-so-bCB"/>
+                        <outlet property="lastNameTextField" destination="l6n-3c-5Fp" id="Cnf-jd-XrM"/>
+                        <outlet property="profileImage" destination="PjY-DV-9B0" id="wLX-Nz-DC5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ghh-YT-pWH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1851" y="-353.25"/>
+            <point key="canvasLocation" x="1678.5" y="-378"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="4zW-7f-5k4">

@@ -14,8 +14,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
   var people = [Person]()
   var teacher = [Person]()
   var allArray = [[Person]]()
-  
+
   var sectionTitle = ["Students", "Teachers"]
+  
   var nathan = Person(firstName: "Nathan", lastName: "Ma")
   var tuan = Person(firstName: "Tuan", lastName: "Vu")
   var brian = Person(firstName: "Brian", lastName: "Mendez")
@@ -28,29 +29,47 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     people = [nathan, tuan, brian]
     teacher = [brad, john]
     allArray = [people, teacher]
-    
+
     
     
   }
-  
+  override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
+    let indexPath = self.tableView.indexPathForSelectedRow()
+    if segue.identifier == "pushDetail" {
+      var destination = segue.destinationViewController as DetailViewController
+      destination.personProfile = allArray[indexPath.section][indexPath.row]
+      println("prepareForSegue")
+      
+    }
+  }
+
   override func viewWillAppear(animated: Bool) {
+    println("viewWillAppear")
+
     tableView.reloadData()
   }
   
   func numberOfSectionsInTableView(tableView: UITableView!) -> Int {
+    println("numberOfSectionsInTableView")
+
     return self.allArray.count
   }
   func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
+    println("numberOfRowsInSection")
     return allArray[section].count
   }
   
   func tableView(tableView: UITableView!, titleForHeaderInSection section: Int) -> String! {
+    println("titleForHeaderInSection")
+
     return sectionTitle[section]
   }
   
   func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
     var cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
     cell.textLabel.text = allArray[indexPath.section][indexPath.row].fullName()
+    println("cellForRowAtIndexPath")
+
 //    self.preProfile = allArray[indexPath.section][indexPath.row]
     
     return cell
@@ -59,13 +78,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     super.didReceiveMemoryWarning()
   }
   
-   override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
-    let indexPath = self.tableView.indexPathForSelectedRow()
-    if segue.identifier == "pushDetail" {
-      var destination = segue.destinationViewController as DetailViewController
-      destination.personProfile = allArray[indexPath.section][indexPath.row]
-    }
-  }
-
+  
 }
 
