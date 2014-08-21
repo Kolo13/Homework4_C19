@@ -38,38 +38,29 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     if segue.identifier == "pushDetail" {
       var destination = segue.destinationViewController as DetailViewController
       destination.personProfile = allArray[indexPath.section][indexPath.row]
-      println("prepareForSegue")
       
     }
   }
 
   override func viewWillAppear(animated: Bool) {
-    println("viewWillAppear")
 
     tableView.reloadData()
   }
   
   func numberOfSectionsInTableView(tableView: UITableView!) -> Int {
-    println("numberOfSectionsInTableView")
-
     return self.allArray.count
   }
   func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
-    println("numberOfRowsInSection")
     return allArray[section].count
   }
   
   func tableView(tableView: UITableView!, titleForHeaderInSection section: Int) -> String! {
-    println("titleForHeaderInSection")
-
     return sectionTitle[section]
   }
   
   func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
     var cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
     cell.textLabel.text = allArray[indexPath.section][indexPath.row].fullName()
-    println("cellForRowAtIndexPath")
-
 //    self.preProfile = allArray[indexPath.section][indexPath.row]
     
     return cell
